@@ -1,0 +1,36 @@
+generated: '2026-08-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: axenahealth.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 06:49:52 2026 GMT
+  hsts: false
+- host: levacares.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 14 22:55:19 2026 GMT
+  hsts: false
+domains:
+- domain: axenahealth.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: levacares.com
+  dnssec: false
+  caa: []
+  spf: true
+  spf_record: v=spf1 include:us._netblocks.mimecast.com include:_spf.salesforce.com
+    include:spf.protection.outlook.com -all
+  dmarc: true
+  dmarc_policy: reject
+x-note: >-
+  levacares.com was probed by hand because provider_hosts() only walks Website /
+  Portal pointers and API hosts; it is carried in apis.yml as ProductWebsite. It
+  is the host that serves the MCP endpoints and the OAuth discovery documents,
+  so its posture matters more than the corporate site's. Neither host sets HSTS
+  and neither registrable domain is DNSSEC-signed or publishes a CAA record;
+  both publish SPF and a DMARC policy of p=reject.

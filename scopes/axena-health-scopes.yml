@@ -1,0 +1,42 @@
+generated: '2026-08-06'
+method: probed
+source: https://levacares.com/.well-known/oauth-authorization-server
+name: Axena Health — OAuth scopes
+description: >-
+  One scope, and it is the whole surface. The OAuth Authorization Server
+  Metadata document on levacares.com declares a single supported scope, `mcp`,
+  which the Protected Resource Metadata document binds to the WordPress MCP
+  Adapter endpoint. There is no scope reference page to search — Axena Health
+  publishes no developer documentation — so nothing beyond what the discovery
+  documents themselves assert is recorded here.
+docs: null
+authorization_server: https://levacares.com
+resource: https://levacares.com/wp-json/mcp/mcp-oauth-server
+
+scopes:
+- name: mcp
+  description: >-
+    Granted access to the WordPress MCP Adapter endpoint at
+    https://levacares.com/wp-json/mcp/mcp-oauth-server. The adapter does not
+    subdivide this scope; it is coarse-grained and covers whatever abilities the
+    site has registered under the wp-abilities/v1 namespace. Those abilities
+    could not be enumerated anonymously (tools/list returns 401), so the real
+    consequence of granting this scope is not publicly knowable.
+  source: scopes_supported
+  granularity: coarse
+
+x-gap: >-
+  A single coarse scope over an unenumerable tool set is the pattern this
+  catalog flags: a consenting user cannot see what they are consenting to. The
+  fix is the provider's — register named abilities and publish the tool
+  manifest, or narrow the scope.
+
+x-evidence:
+  probed: '2026-08-06'
+  results:
+  - url: https://levacares.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://levacares.com/.well-known/oauth-protected-resource
+    http_status: 200
+  - url: https://levacares.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401

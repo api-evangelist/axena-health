@@ -1,0 +1,79 @@
+generated: '2026-08-06'
+method: probed
+source: https://levacares.com/.well-known/oauth-authorization-server
+name: Axena Health — authentication profile
+description: >-
+  Axena Health publishes no developer authentication documentation, because it
+  publishes no developer program. This profile is derived entirely from the
+  anonymous OAuth discovery documents the WordPress MCP Adapter serves on
+  levacares.com, plus the authentication block advertised by the WordPress REST
+  API discovery root on both hosts. Nothing here was read from a docs page,
+  because no docs page exists.
+
+x-nature: >-
+  Platform-level authentication for a WordPress install, not a product or
+  clinical API. The Leva mobile app's own authentication surface is not public
+  and was not probed.
+
+schemes:
+- id: mcp-oauth2
+  type: oauth2
+  host: levacares.com
+  flows:
+    authorizationCode:
+      authorizationUrl: https://levacares.com/oauth/authorize
+      tokenUrl: https://levacares.com/oauth/token
+      refreshUrl: https://levacares.com/oauth/token
+      revocationUrl: https://levacares.com/oauth/revoke
+      scopes:
+        mcp: Access the WordPress MCP Adapter endpoint on levacares.com
+  grant_types: [authorization_code, refresh_token]
+  response_types: [code]
+  pkce:
+    required: true
+    code_challenge_methods: [S256]
+  client_authentication:
+    token_endpoint_auth_methods: [none]
+    note: Public clients only — no client secret is accepted at the token endpoint.
+  client_registration:
+    client_id_metadata_document_supported: true
+    dynamic_client_registration: not-advertised
+  token_presentation:
+    bearer_methods_supported: [header]
+  protected_resource: https://levacares.com/wp-json/mcp/mcp-oauth-server
+  discovery:
+    authorization_server_metadata: https://levacares.com/.well-known/oauth-authorization-server
+    protected_resource_metadata: https://levacares.com/.well-known/oauth-protected-resource
+- id: wp-application-passwords
+  type: http
+  scheme: basic
+  hosts: [levacares.com, axenahealth.com]
+  note: >-
+    The WordPress REST API discovery root advertises Application Passwords as
+    its authentication mechanism, with the authorization endpoint at
+    /wp-admin/authorize-application.php. This is an administrative credential
+    for the CMS, not a developer API key.
+  authorization_endpoint: https://levacares.com/wp-admin/authorize-application.php
+
+anonymous_access:
+  note: >-
+    The default WordPress REST API read routes (wp/v2 posts, pages, media,
+    taxonomies) answer anonymously on both hosts. Every mcp/* route returns 401.
+
+x-evidence:
+  probed: '2026-08-06'
+  results:
+  - url: https://levacares.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://levacares.com/.well-known/oauth-protected-resource
+    http_status: 200
+  - url: https://levacares.com/wp-json/
+    http_status: 200
+  - url: https://axenahealth.com/wp-json/
+    http_status: 200
+  - url: https://levacares.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401
+  - url: https://axenahealth.com/.well-known/openid-configuration
+    http_status: 404
+  - url: https://levacares.com/.well-known/openid-configuration
+    http_status: 404

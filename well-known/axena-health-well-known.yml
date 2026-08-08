@@ -1,0 +1,115 @@
+generated: '2026-08-06'
+method: probed
+source: https://levacares.com/.well-known/
+name: Axena Health — /.well-known/ discovery probe
+description: >-
+  Every RFC 8615 well-known path probed across the Axena Health hosts. Two real
+  hits, both on levacares.com (the Leva Pelvic Health System product site): an
+  RFC 8414 OAuth 2.0 Authorization Server Metadata document and an RFC 9728
+  OAuth 2.0 Protected Resource Metadata document. Both are emitted by the
+  WordPress MCP Adapter running on that site, not by a product API. No
+  security.txt, no OpenID Provider configuration, no API catalog, no A2A agent
+  card was published on any host.
+
+x-nature: >-
+  These documents are WordPress platform surfaces on a marketing/product site.
+  They are recorded because they are real, anonymous, and machine-readable — not
+  because Axena Health operates a developer program. It does not.
+
+hosts_probed:
+- axenahealth.com
+- www.levacares.com
+- levacares.com
+
+soft_404_control:
+  note: >-
+    levacares.com answers unknown paths with a 404 status and a ~114KB HTML
+    body, so a 200 with an application/json body is a genuine hit, not an SPA
+    catch-all.
+  url: https://www.levacares.com/.well-known/kinlane-control-probe.json
+  status: 404
+  content_type: text/html; charset=UTF-8
+
+paths:
+- path: /.well-known/oauth-authorization-server
+  host: levacares.com
+  url: https://levacares.com/.well-known/oauth-authorization-server
+  status: 200
+  content_type: application/json; charset=UTF-8
+  file: axena-health-levacares-oauth-authorization-server.json
+  spec: RFC 8414
+  note: >-
+    Authorization Code + refresh_token, PKCE S256 required, public clients
+    (token_endpoint_auth_methods_supported = none), single scope "mcp",
+    client_id_metadata_document_supported = true.
+- path: /.well-known/oauth-protected-resource
+  host: levacares.com
+  url: https://levacares.com/.well-known/oauth-protected-resource
+  status: 200
+  content_type: application/json; charset=UTF-8
+  file: axena-health-levacares-oauth-protected-resource.json
+  spec: RFC 9728
+  note: >-
+    Declares https://levacares.com/wp-json/mcp/mcp-oauth-server as the protected
+    resource, bearer token in the Authorization header, scope "mcp".
+- path: /.well-known/security.txt
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/security.txt
+  status: 404
+- path: /.well-known/security.txt
+  host: levacares.com
+  url: https://levacares.com/.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/openid-configuration
+  status: 404
+- path: /.well-known/openid-configuration
+  host: levacares.com
+  url: https://levacares.com/.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/api-catalog
+  status: 404
+- path: /.well-known/api-catalog
+  host: levacares.com
+  url: https://levacares.com/.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: levacares.com
+  url: https://levacares.com/.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent-card.json
+  host: levacares.com
+  url: https://levacares.com/.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  host: axenahealth.com
+  url: https://axenahealth.com/.well-known/agent.json
+  status: 404
+- path: /.well-known/agent.json
+  host: levacares.com
+  url: https://levacares.com/.well-known/agent.json
+  status: 404
+- path: /.well-known/mcp.json
+  host: levacares.com
+  url: https://levacares.com/.well-known/mcp.json
+  status: 404
+
+x-evidence:
+  fetched: '2026-08-06'
+  hits: 2
+  misses: 15

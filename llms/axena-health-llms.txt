@@ -1,0 +1,76 @@
+# Axena Health, Inc.
+
+> Axena Health is a women's health medical device company in Waltham, Massachusetts. Its flagship
+> product is the Leva Pelvic Health System, an FDA-cleared prescription digital therapeutic that
+> pairs a vaginal motion sensor with a mobile app to deliver supervised pelvic floor muscle training
+> for stress, mixed and mild-to-moderate urgency urinary incontinence and chronic fecal incontinence.
+
+<!--
+generated: 2026-08-06
+method: generated
+source: apis.yml + probed artifacts in this repository
+note: Axena Health does not publish an llms.txt. https://axenahealth.com/llms.txt and
+      https://levacares.com/llms.txt both return 404. This file is written by API Evangelist
+      from the company's public surface and from live probes recorded in this repository. It is a
+      third-party profile, not a document Axena Health serves.
+-->
+
+## What there is to integrate with
+
+**Nothing, as of 2026-08-06.** Axena Health operates no developer portal, no public API reference,
+no OpenAPI or other machine-readable contract, no SDKs, no CLI, no webhooks, no sandbox, no GitHub
+organization and no published packages on npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems,
+Packagist or crates.io. Leva is prescribed, dispensed and used as a regulated end-user product; the
+software is not offered as a platform.
+
+Two machine-readable surfaces do exist, and both are WordPress platform plumbing rather than product
+APIs. They are recorded here because they are real and anonymously discoverable, not because they
+constitute a developer program.
+
+## Machine-readable surfaces found
+
+- [WordPress REST API — levacares.com](https://levacares.com/wp-json/): 200. The default WordPress
+  REST discovery root for the Leva Pelvic Health System site, 472 routes across 20 namespaces
+  (wp/v2, wp-abilities/v1, mcp, plus plugin namespaces). Content routes only — posts, pages, media,
+  taxonomies. No clinical or device data.
+- [WordPress REST API — axenahealth.com](https://axenahealth.com/wp-json/): 200. The same, for the
+  corporate site: 324 routes, 20 namespaces, no `mcp` namespace.
+- [MCP Adapter — levacares.com](https://levacares.com/wp-json/mcp/mcp-oauth-server): 401. A live
+  WordPress MCP Adapter endpoint. `tools/list` returns `mcp_unauthorized`; the tool set cannot be
+  enumerated without an OAuth bearer token in the `mcp` scope.
+- [MCP Adapter (default server)](https://levacares.com/wp-json/mcp/mcp-adapter-default-server): 401.
+- [OAuth Authorization Server Metadata](https://levacares.com/.well-known/oauth-authorization-server):
+  200, RFC 8414. Authorization code + refresh_token, PKCE S256 required, public clients only, one
+  scope: `mcp`.
+- [OAuth Protected Resource Metadata](https://levacares.com/.well-known/oauth-protected-resource):
+  200, RFC 9728. Binds the `mcp` scope to the MCP adapter endpoint.
+
+## Probed and absent
+
+`/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v1/openapi.json`, `/api-docs`, `/docs`,
+`/redoc`, `/graphql`, `/llms.txt`, `/.well-known/security.txt`, `/.well-known/openid-configuration`,
+`/.well-known/api-catalog`, `/.well-known/ai-plugin.json`, `/.well-known/agent-card.json`,
+`/.well-known/agent.json` — all 404 on every probed host. `api.`, `docs.`, `developer.`,
+`app.`, `portal.` subdomains of both axenahealth.com and levacares.com are NXDOMAIN.
+
+## Company
+
+- [Axena Health](https://axenahealth.com/): corporate site.
+- [About Us](https://axenahealth.com/about-us/): company, team and board.
+- [In the News](https://axenahealth.com/latest-blogs/): press and announcements ([RSS](https://axenahealth.com/feed/)).
+- [Contact Us](https://axenahealth.com/contact-us/).
+- [Terms and Conditions](https://axenahealth.com/terms-and-conditions/).
+- [Privacy Policy](https://axenahealth.com/privacy-policy/).
+
+## Product — Leva Pelvic Health System
+
+- [LevaCares](https://www.levacares.com/): product site.
+- [For Women](https://levacares.com/for-women/): patient information.
+- [For Healthcare Providers](https://levacares.com/for-hcps/): prescriber information.
+- [For Health Plans](https://levacares.com/for-health-plans/): payer information.
+- [FAQs](https://levacares.com/faqs/).
+
+## Optional
+
+- [API Evangelist profile of Axena Health](https://apis.io/provider/axena-health/): the independent
+  third-party assessment this file was generated alongside.

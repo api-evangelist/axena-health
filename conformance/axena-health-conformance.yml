@@ -1,0 +1,117 @@
+generated: '2026-08-06'
+method: probed
+source: https://levacares.com/.well-known/
+name: Axena Health — standards conformance
+description: >-
+  What Axena Health's public surface actually conforms to, asserted only where a
+  probe returned a document that proves it. The conforming pieces are all
+  WordPress platform plumbing on levacares.com; nothing in the healthcare
+  interoperability column is present, which for a prescription digital
+  therapeutic is the notable absence.
+
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749) — authorization code
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server declares response_types_supported
+    ["code"] and grant_types_supported ["authorization_code","refresh_token"]
+    with live authorize/token/revoke endpoints.
+  source: https://levacares.com/.well-known/oauth-authorization-server
+- id: rfc7636-pkce
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"]; plain is not offered.
+  source: https://levacares.com/.well-known/oauth-authorization-server
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 200 application/json with
+    issuer, authorization_endpoint and token_endpoint.
+  source: https://levacares.com/.well-known/oauth-authorization-server
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata (RFC 9728)
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-protected-resource returns 200 with resource,
+    authorization_servers, bearer_methods_supported and scopes_supported; the
+    401 from the MCP endpoint carries a WWW-Authenticate header pointing at it.
+  source: https://levacares.com/.well-known/oauth-protected-resource
+- id: rfc7009
+  name: OAuth 2.0 Token Revocation (RFC 7009)
+  conforms: true
+  evidence: revocation_endpoint = https://levacares.com/oauth/revoke
+  source: https://levacares.com/.well-known/oauth-authorization-server
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    Two live MCP endpoints under the WordPress `mcp` REST namespace, with the
+    MCP authorization spec's RFC 9728 discovery chain implemented. Protocol
+    version and capabilities could not be read — initialize/tools_list are
+    gated behind OAuth.
+  partial: true
+  source: https://levacares.com/wp-json/mcp
+- id: rfc8615
+  name: Well-Known URIs (RFC 8615)
+  conforms: true
+  evidence: Two well-known documents served at 200 on levacares.com.
+  source: well-known/axena-health-well-known.yml
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on both hosts.
+- id: rfc9116
+  name: security.txt (RFC 9116)
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on both hosts.
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both return 404 on
+    both hosts.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    No OpenAPI document at any probed location on axenahealth.com,
+    levacares.com, or the api./docs./developer. subdomains (all NXDOMAIN).
+- id: fhir
+  name: HL7 FHIR
+  conforms: false
+  evidence: >-
+    No FHIR capability statement, no /fhir or /metadata endpoint, no
+    interoperability documentation on either host.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    Error bodies observed are the WordPress REST envelope
+    {code, message, data:{status}} served as application/json, not
+    application/problem+json.
+
+x-note-compliance: >-
+  No `Compliance` pointer is emitted. Axena Health's Leva system is an
+  FDA-cleared Class II device and the company operates under HIPAA as a matter
+  of law, but neither claim is published as a trust center, a certification
+  page, or a machine-readable attestation — /trust, /compliance, /security and
+  trust.axenahealth.com all miss. This catalog scores what is published, not
+  what is presumed.
+
+x-evidence:
+  probed: '2026-08-06'
+  results:
+  - url: https://levacares.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://levacares.com/.well-known/oauth-protected-resource
+    http_status: 200
+  - url: https://levacares.com/wp-json/mcp
+    http_status: 200
+  - url: https://axenahealth.com/compliance
+    http_status: 404
+  - url: https://levacares.com/trust
+    http_status: 404
+  - url: https://axenahealth.com/.well-known/security.txt
+    http_status: 404
