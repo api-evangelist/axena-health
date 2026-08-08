@@ -1,17 +1,36 @@
 aid: axena-health
 name: Axena Health
-description: 'Axena Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Axena Health, Inc. is a Waltham, Massachusetts women''s health medical
+  device company whose flagship product is the Leva Pelvic Health System, an FDA-cleared
+  prescription digital therapeutic that pairs a vaginal motion sensor with a mobile
+  app to deliver supervised pelvic floor muscle training for stress, mixed and mild-to-moderate
+  urgency urinary incontinence and chronic fecal incontinence. Leva is prescribed by
+  clinicians, dispensed to patients through telehealth and specialty channels, and
+  is reimbursed through commercial health plans and federal channels including the
+  Veterans Health Administration. Axena Health ships software only as a regulated
+  end-user product: as of this profile it operates no developer portal, no public API
+  reference, no SDKs and no partner integration program. The only machine-readable
+  surfaces reachable without credentials are the default WordPress REST API on its two
+  marketing sites and an OAuth-protected WordPress MCP Adapter endpoint on levacares.com.'
+image: https://axenahealth.com/wp-content/uploads/cropped-AxenaSquare-e1713986234486.jpg
 url: https://raw.githubusercontent.com/api-evangelist/axena-health/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pass
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Health
+- Digital Health
+- Medical Devices
+- Women's Health
+- Digital Therapeutics
+- Pelvic Health
+- Medical Software
+- Telehealth
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +38,61 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/axena-health-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://axenahealth.com/
+- type: ProductWebsite
+  url: https://www.levacares.com/
+- type: About
+  url: https://axenahealth.com/about-us/
+- type: Blog
+  url: https://axenahealth.com/latest-blogs/
+- type: BlogRSS
+  url: https://axenahealth.com/feed/
+- type: Support
+  url: https://axenahealth.com/contact-us/
+- type: HelpCenter
+  url: https://levacares.com/faqs/
+- type: TermsOfService
+  url: https://axenahealth.com/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://axenahealth.com/privacy-policy/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/axena-health/
+- type: WellKnown
+  url: well-known/axena-health-well-known.yml
+- type: MCPServer
+  url: mcp/axena-health-mcp.yml
+- type: Authentication
+  url: authentication/axena-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/axena-health-scopes.yml
+- type: Conformance
+  url: conformance/axena-health-conformance.yml
+- type: LLMsTxt
+  url: llms/axena-health-llms.txt
+x-enrichment:
+  date: '2026-08-06'
+  status: minimal
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Axena Health ships Leva only as an FDA-cleared prescription end-user product —
+    there is no developer portal, no API reference, no SDK and no GitHub org; the
+    only machine-readable surfaces on either host are the default WordPress REST
+    API and a WordPress MCP Adapter on levacares.com that answers tools/list with
+    401 mcp_unauthorized.
+  evidence:
+  - url: https://axenahealth.com/openapi.json
+    status: 404
+  - url: https://levacares.com/wp-json/mcp/mcp-oauth-server
+    status: 401
+  - url: https://levacares.com/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://api.github.com/orgs/axenahealth
+    status: 404
+  checked: '2026-08-06'
