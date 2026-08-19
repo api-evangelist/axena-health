@@ -3,39 +3,36 @@ method: probed
 source: https://levacares.com/wp-json/mcp
 name: Leva Pelvic Health System — WordPress MCP Adapter
 status: live-gated
-description: >-
-  levacares.com — the Leva Pelvic Health System product site operated by Axena
-  Health — runs the WordPress MCP Adapter and exposes two live Model Context
-  Protocol endpoints under the `mcp` REST namespace, with full RFC 8414 / RFC
-  9728 OAuth discovery. Both endpoints are deployed and answering; both require
-  a bearer token, so the live tool set could not be enumerated anonymously.
-
-x-nature: >-
-  This is a WordPress platform surface on a marketing/product site, not a
-  clinical or product API. Axena Health publishes no developer portal, no API
-  reference and no OpenAPI. The MCP server is recorded because it is genuinely
-  deployed and anonymously discoverable — it should not be read as evidence of a
-  developer program.
-
+description: levacares.com — the Leva Pelvic Health System product site operated by Axena Health — runs
+  the WordPress MCP Adapter and exposes two live Model Context Protocol endpoints under the `mcp` REST
+  namespace, with full RFC 8414 / RFC 9728 OAuth discovery. Both endpoints are deployed and answering;
+  both require a bearer token, so the live tool set could not be enumerated anonymously.
+x-nature: This is a WordPress platform surface on a marketing/product site, not a clinical or product
+  API. Axena Health publishes no developer portal, no API reference and no OpenAPI. The MCP server is
+  recorded because it is genuinely deployed and anonymously discoverable — it should not be read as evidence
+  of a developer program.
 surfaces:
 - id: mcp-oauth-server
   url: https://levacares.com/wp-json/mcp/mcp-oauth-server
   transport: streamable-http
-  methods: [POST, GET, DELETE]
+  methods:
+  - POST
+  - GET
+  - DELETE
   auth: oauth2-bearer
   status: 401
-  challenge: >-
-    WWW-Authenticate: Bearer realm="https://levacares.com",
-    resource_metadata="https://levacares.com/.well-known/oauth-protected-resource"
+  challenge: 'WWW-Authenticate: Bearer realm="https://levacares.com", resource_metadata="https://levacares.com/.well-known/oauth-protected-resource"'
   body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
 - id: mcp-adapter-default-server
   url: https://levacares.com/wp-json/mcp/mcp-adapter-default-server
   transport: streamable-http
-  methods: [POST, GET, DELETE]
+  methods:
+  - POST
+  - GET
+  - DELETE
   auth: wordpress-rest-auth
   status: 401
   body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
-
 discovery:
   namespace_index: https://levacares.com/wp-json/mcp
   namespace_index_status: 200
@@ -43,18 +40,14 @@ discovery:
   oauth_authorization_server: https://levacares.com/.well-known/oauth-authorization-server
   oauth_protected_resource: https://levacares.com/.well-known/oauth-protected-resource
   wp_abilities_namespace: wp-abilities/v1
-
 tools:
   count: unknown
-  reason: >-
-    tools/list returns 401 on both endpoints. The live tool set and its
-    inputSchemas require an authenticated introspection with an OAuth bearer
-    token in the "mcp" scope; no anonymous tool manifest, llms.txt or docs page
-    publishes the names, so nothing is recorded here rather than guessed.
-
+  reason: tools/list returns 401 on both endpoints. The live tool set and its inputSchemas require an
+    authenticated introspection with an OAuth bearer token in the "mcp" scope; no anonymous tool manifest,
+    llms.txt or docs page publishes the names, so nothing is recorded here rather than guessed.
 x-evidence:
   probed: '2026-08-06'
-  method: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  method: POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
   accept: application/json, text/event-stream
   results:
   - url: https://levacares.com/wp-json/mcp/mcp-oauth-server
@@ -65,3 +58,8 @@ x-evidence:
     http_status: 200
   - url: https://levacares.com/mcp
     http_status: 404
+deployment:
+  mode: unclear
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census
