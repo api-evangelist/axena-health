@@ -12,6 +12,17 @@ description: 'Axena Health, Inc. is a Waltham, Massachusetts women''s health med
   reference, no SDKs and no partner integration program. The only machine-readable
   surfaces reachable without credentials are the default WordPress REST API on its two
   marketing sites and an OAuth-protected WordPress MCP Adapter endpoint on levacares.com.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://axenahealth.com/wp-content/uploads/cropped-AxenaSquare-e1713986234486.jpg
 url: https://raw.githubusercontent.com/api-evangelist/axena-health/refs/heads/main/apis.yml
 x-type: company
