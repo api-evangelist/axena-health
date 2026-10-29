@@ -64,5 +64,96 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Axena Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Axena Health, Inc. is a Waltham, Massachusetts women's health medical device company whose flagship product is the Leva Pelvic Health System, an FDA-cleared prescription digital therapeutic that pairs a vaginal motion sensor with a mobile app to deliver supervised pelvic floor muscle training for stress, mixed and mild-to-moderate urgency urinary incontinence and chronic fecal incontinence. Leva is prescribed by clinicians, dispensed to patients through telehealth and specialty channels, and is reimbursed through commercial health plans and federal channels including the Veterans Health Administration. Axena Health ships software only as a regulated end-user product: as of this profile it operates no developer portal, no public API reference, no SDKs and no partner integration program. The only machine-readable surfaces reachable without credentials are the default WordPress REST API on its two marketing sites and an OAuth-protected WordPress MCP Adapter endpoint on levacares.com.
+
+**Areas:** Company · Health · Digital Health · Medical Devices · Women's Health · Digital Therapeutics · Pelvic Health · Medical Software · Telehealth
+
+## Axena Health on APIs.io
+
+Everything profiled for Axena Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/axena-health/](https://apis.io/providers/axena-health/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Leva Pelvic Health System — WordPress MCP Adapter](https://apis.io/servers/axena-health/leva-pelvic-health-system-wordpress-mcp-adapter/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Axena Health Authentication](https://apis.io/security/axena-health/axena-health-authentication/)
+- [Axena Health Domain Security](https://apis.io/security/axena-health/axena-health-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Axena Health Scopes](https://apis.io/scopes/axena-health/axena-health-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://axenahealth.com/)
+- [Support](https://axenahealth.com/contact-us/)
+- [Blog](https://axenahealth.com/latest-blogs/)
+- [Terms of service](https://axenahealth.com/terms-and-conditions/)
+- [Privacy policy](https://axenahealth.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 18.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 21.1 |
+
+**Agent readiness 6.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.8** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/axena-health/](https://apis.io/providers/axena-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Axena Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/axena-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
